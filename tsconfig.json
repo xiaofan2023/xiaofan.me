@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "jsx": "preserve",
+    "lib": ["dom", "esnext"],
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "paths": {
+      "~/*": ["src/*"]
+    },
+    "resolveJsonModule": true,
+    "strict": true,
+    "target": "esnext"
+  },
+  "include": ["src/**/*", ".vitepress/theme/components/T.vue.ts"]
+}

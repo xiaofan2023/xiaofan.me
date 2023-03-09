@@ -1,0 +1,52 @@
+{
+  "scripts": {
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:serve": "vitepress preview"
+  },
+  "dependencies": {
+    "@iconify-json/carbon": "^1.1.16",
+    "@types/node": "^18.14.6",
+    "@volar/vue-typescript": "^1.2.0",
+    "@vueuse/core": "^9.13.0",
+    "fast-glob": "^3.2.12",
+    "fs-extra": "^11.1.0",
+    "gray-matter": "^4.0.3",
+    "nprogress": "^0.2.0",
+    "postcss": "^8.4.21",
+    "prettier": "^2.8.4",
+    "prettier-plugin-organize-imports": "^3.2.2",
+    "prettier-plugin-tailwindcss": "^0.2.4",
+    "tailwindcss": "^3.2.7",
+    "typescript": "^4.9.5",
+    "unplugin-auto-import": "^0.15.1",
+    "unplugin-icons": "^0.15.3",
+    "unplugin-vue-components": "^0.24.1",
+    "vite": "^4.1.4",
+    "vitepress": "1.0.0-alpha.50",
+    "vue": "^3.2.47"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "@algolia/client-search"
+      ]
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "tailwindcss": {}
+    }
+  },
+  "prettier": {
+    "arrowParens": "avoid",
+    "bracketSpacing": true,
+    "semi": false,
+    "singleAttributePerLine": true,
+    "singleQuote": true,
+    "plugins": [
+      "prettier-plugin-organize-imports",
+      "prettier-plugin-tailwindcss"
+    ]
+  }
+}
