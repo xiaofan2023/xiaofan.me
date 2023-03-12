@@ -3,6 +3,7 @@ import {
   useEventListener,
   useStorage,
   useSwipe,
+  useThrottleFn,
 } from '@vueuse/core'
 import { Direction, Model, normalizeTiles } from './model'
 import { presetList } from './presets'
@@ -36,8 +37,8 @@ export default function use2048(options: Use2048Options = {}) {
   } = options
 
   const model = reactive(new Model())
-  const { over, best, score, tiles } = toRefs(model)
-  useStorage(bestKey, best)
+  const { over, score, tiles } = toRefs(model)
+  const throttleMove = useThrottleFn((dir: Direction) => model.move(dir), 150)
 
   const presetIndex = useStorage(presetKey, 0)
   const { state, index, next } = useCycleList(presetList)
@@ -47,20 +48,22 @@ export default function use2048(options: Use2048Options = {}) {
     const direction = eventKeyMap[event.key]
     if (direction) {
       event.preventDefault()
-      model.move(direction)
+      throttleMove(direction)
     }
   })
 
   const { direction } = useSwipe(target, {
-    threshold: 20,
-    passive: false,
+    threshold: 30,
   })
 
+  const best = useStorage(bestKey, 0)
+
   const stops = [
+    watch(score, value => value > best.value && (best.value = value)),
     watch(index, value => (presetIndex.value = value)),
     watch(direction, value => {
       if (value && value !== 'NONE') {
-        model.move(value)
+        throttleMove(value)
       }
     }),
   ]
@@ -75,6 +78,7 @@ export default function use2048(options: Use2048Options = {}) {
 
   function doAutoSave() {
     if (over.value) {
+      localStorage.removeItem(prevKey)
       return
     }
     localStorage.setItem(
@@ -100,8 +104,8 @@ export default function use2048(options: Use2048Options = {}) {
   onScopeDispose(() => stops.forEach(stop => stop()))
 
   return {
-    over,
     best,
+    over,
     score,
     tiles,
     init: model.init.bind(model),

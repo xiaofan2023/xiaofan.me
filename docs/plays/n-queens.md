@@ -20,7 +20,7 @@ title: 八皇后问题
 
 ## 代码示例
 
-<T title="💡基于回溯思路的解法">
+<T title="基于回溯思路的解法">
 
 <<< @/../src/examples/n-queens-solution.ts
 

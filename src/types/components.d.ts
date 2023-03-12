@@ -9,7 +9,9 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    GameCard: typeof import('./../components/Card/GameCard.vue')['default']
-    T: typeof import('./../components/T.vue')['default']
+    GameCard: typeof import('./../components/vp/GameCard.vue')['default']
+    ICarbonRepeatOne: typeof import('~icons/carbon/repeat-one')['default']
+    Modal: typeof import('./../components/modal/Modal.vue')['default']
+    T: typeof import('./../components/vp/T.vue')['default']
   }
 }

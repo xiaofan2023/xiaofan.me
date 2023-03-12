@@ -1,18 +1,17 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "./",
     "esModuleInterop": true,
-    "jsx": "preserve",
     "lib": ["dom", "esnext"],
+    "module": "esnext",
     "moduleResolution": "node",
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
     "paths": {
       "~/*": ["src/*"]
     },
     "resolveJsonModule": true,
     "strict": true,
-    "target": "esnext"
+    "target": "esnext",
+    "types": ["unplugin-icons/types/vue"]
   },
-  "include": ["src/**/*", ".vitepress/theme/components/T.vue.ts"]
+  "include": ["src/**/*", "vite.config.ts"]
 }

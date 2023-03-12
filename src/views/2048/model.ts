@@ -8,11 +8,11 @@ export interface SnapMeta {
 
 export interface TileMeta extends SnapMeta {
   key?: number /** as v-for key*/
-  mergeFrom?: SnapMeta
+  prev?: SnapMeta
+  merged?: boolean
 }
 
 export interface StorageOptions {
-  best: number
   score: number
   snaps: SnapMeta[]
 }
@@ -29,13 +29,11 @@ let key = 0
 
 export class Model {
   over = false
-  best = 0
   score = 0
   tiles: TileMeta[] = []
   snaps: (SnapMeta | null)[][] = []
 
   init(storages?: StorageOptions) {
-    this.best = storages?.score || 0
     this.score = storages?.score || 0
     this.tiles = storages?.snaps || []
     this.updateTiles(true)
@@ -103,11 +101,11 @@ export class Model {
     if (JSON.stringify(normalizeTiles(this.tiles)) === prevSnaps) {
       return
     }
-    if (this.score > this.best) {
-      this.best = this.score
-    }
     this.popup()
   }
+
+  // TODO:
+  back() {}
 
   isGameOver() {
     for (let y = 0; y < 4; y++) {
@@ -171,7 +169,6 @@ export class Model {
   tryMerge(from: TileMeta, to: TileMeta) {
     if (canIMerge(from, to)) {
       from.level++
-      from.mergeFrom = { x: from.x, y: from.y, level: from.level }
       to.level = 0
       this.score += levelToScore(from.level)
       return true

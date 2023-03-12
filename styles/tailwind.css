@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .btn {
+    @apply inline-flex cursor-pointer select-none items-center justify-center rounded-md  px-3 py-1 transition;
+  }
+
+  .btn.btn-classic {
+    @apply bg-black/5 text-[#0f0f0f] hover:bg-black/10 dark:bg-white/10 dark:text-[#f1f1f1] dark:hover:bg-white/20;
+  }
+
+  .btn.btn-highlight {
+    @apply bg-[#0f0f0f] text-white hover:bg-[#030303] dark:bg-[#f1f1f1] dark:text-[#0f0f0f] hover:dark:bg-white;
+  }
+}
