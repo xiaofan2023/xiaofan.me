@@ -209,10 +209,7 @@ function closeResumeDialog() {
         </div>
       </div>
 
-      <div
-        class="overflow-auto"
-        @touchmove.prevent
-      >
+      <div class="overflow-auto">
         <div
           v-if="board"
           ref="domBoard"
