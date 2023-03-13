@@ -1,5 +1,10 @@
 <script lang="ts" setup>
-import { useEventListener, useMouseInElement, useTimestamp } from '@vueuse/core'
+import {
+  useEventListener,
+  useMouseInElement,
+  useStorage,
+  useTimestamp,
+} from '@vueuse/core'
 import GridItem from './item.vue'
 import {
   GridLabelPresets,
@@ -22,8 +27,8 @@ const gameLevel = computed(() => {
   return 'custom'
 })
 
-const timeStamp = useTimestamp()
 const duration = ref(0)
+const timeStamp = useTimestamp()
 
 watchEffect(() => {
   if (state.value === 'ready') {
@@ -48,47 +53,58 @@ function levelOptions() {
 }
 
 /* ------------------------------------ - ----------------------------------- */
-const itemSide = ref(32)
+const itemWidth = ref(32)
+const fastModel = useStorage('g-minesweeper-fast', true)
+const flagModel = useStorage('g-minesweeper-flag', false)
 
 const domBoard = ref<HTMLElement>()
+const elementX = ref(0)
+const elementY = ref(0)
 const highlightFlag = ref(false)
-const highlightIds = ref<number[]>([])
-const flagModel = ref(false)
-const { elementX, elementY } = useMouseInElement(domBoard, {
-  handleOutside: false,
-})
+const highlightList = ref<number[]>([])
 
-watchEffect(() => {
-  if (highlightFlag.value) {
-    const x = elementX.value
-    const y = elementY.value
-    highlightIds.value = model.getHighlight(getClickGridPosition(x, y))
-  } else {
-    highlightIds.value = []
-  }
-})
-
-function onPointerDown() {
+function onPointerDown(event: PointerEvent) {
   highlightFlag.value = true
+  updateElement(event)
+  highlightList.value = model.getHighlight(getClickGridPosition())
+}
+
+function onMoveHandler(event: PointerEvent) {
+  if (highlightFlag.value) {
+    updateElement(event)
+    highlightList.value = model.getHighlight(getClickGridPosition())
+  }
+}
+
+function onPointerUp(event: PointerEvent) {
+  highlightFlag.value = false
+  highlightList.value = []
 }
 
 function onClick() {
-  nextTick(() => {
-    const position = getClickGridPosition()
-    flagModel.value ? model.mark(position) : model.open(position)
-    highlightFlag.value = false
-  })
+  const position = getClickGridPosition()
+  flagModel.value ? model.mark(position) : model.open(position, fastModel.value)
 }
 
 function onRightClick() {
   model.mark(getClickGridPosition())
-  highlightFlag.value = false
+}
+
+function updateElement(event: PointerEvent) {
+  const { x, y, width, height } = domBoard.value!.getBoundingClientRect()
+  let diffX = event.clientX - x
+  let diffY = event.clientY - y
+  if (diffX < 0 || diffX > width || diffY < 0 || diffY > height) {
+    return
+  }
+  elementX.value = diffX
+  elementY.value = diffY
 }
 
 function getClickGridPosition(
   clickX = elementX.value,
   clickY = elementY.value,
-  length = itemSide.value + 2
+  length = itemWidth.value + 2
 ) {
   return {
     x: Math.floor(clickX / length),
@@ -96,7 +112,8 @@ function getClickGridPosition(
   }
 }
 
-const storageKey = 'g-minesweeper'
+//#region save & load
+const storageKey = 'g-minesweeper-prev'
 const showResumeDialog = ref(!!localStorage.getItem(storageKey))
 const storageData = computed(() => {
   if (showResumeDialog.value) {
@@ -137,6 +154,7 @@ function closeResumeDialog() {
   showResumeDialog.value = false
   localStorage.removeItem(storageKey)
 }
+//#endregion
 </script>
 
 <template>
@@ -152,19 +170,22 @@ function closeResumeDialog() {
           >
             {{ LevelLocalize[level] }}
           </button>
+          <button
+            v-if="false"
+            class="btn text-sm"
+            :class="[gameLevel === 'custom' ? 'btn-highlight' : 'btn-classic']"
+            @click=""
+          >
+            自定义
+          </button>
         </div>
-        <label
-          for="toggleFlag"
-          class="btn btn-classic w-20 text-xl"
+        <div
+          class="btn btn-classic"
+          @click="model.redo()"
+          title="重玩本局游戏"
         >
-          <input
-            id="toggleFlag"
-            type="checkbox"
-            v-model="flagModel"
-            class="mr-2"
-          />
-          <span>{{ GridLabelPresets.flag }}</span>
-        </label>
+          <i-carbon-repeat-one />
+        </div>
       </div>
 
       <div
@@ -197,6 +218,8 @@ function closeResumeDialog() {
           ref="domBoard"
           class="inline-flex flex-col space-y-[2px]"
           @pointerdown="onPointerDown"
+          @pointermove="onMoveHandler"
+          @pointerup="onPointerUp"
           @click="onClick"
           @click.right="onRightClick"
           @contextmenu.prevent
@@ -208,12 +231,13 @@ function closeResumeDialog() {
             <GridItem
               v-for="(_, x) in board.w"
               :style="{
-                width: itemSide + 'px',
-                height: itemSide + 'px',
+                width: itemWidth + 'px',
+                height: itemWidth + 'px',
               }"
               :meta="grids[model.posToUid({ x, y })]"
               :highlight="
-                highlightFlag && highlightIds.includes(model.posToUid({ x, y }))
+                highlightFlag &&
+                highlightList.includes(model.posToUid({ x, y }))
               "
             >
             </GridItem>
@@ -221,14 +245,31 @@ function closeResumeDialog() {
         </div>
       </div>
 
-      <div class="flex justify-center">
-        <div
-          class="btn btn-classic px-4"
-          @click="model.redo()"
-          title="重玩本局游戏"
+      <div class="flex justify-center space-x-3">
+        <label
+          for="toggleQuick"
+          class="btn btn-classic w-20"
         >
-          <i-carbon-repeat-one />
-        </div>
+          <input
+            id="toggleQuick"
+            type="checkbox"
+            v-model="fastModel"
+            class="mr-2"
+          />
+          <span class="text-base">🚀</span>
+        </label>
+        <label
+          for="toggleFlag"
+          class="btn btn-classic w-20"
+        >
+          <input
+            id="toggleFlag"
+            type="checkbox"
+            v-model="flagModel"
+            class="mr-2"
+          />
+          <span class="text-base">{{ GridLabelPresets.flag }}</span>
+        </label>
       </div>
     </div>
   </GameCard>

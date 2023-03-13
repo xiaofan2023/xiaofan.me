@@ -1,11 +1,12 @@
 ---
 date: 2023.1.29
 title: TypeScript handbook 阅读笔记
+outline: [2, 3]
 ---
 
 # TypeScript handbook 阅读笔记
 <br />
-<T title='目录' defaultOpen=true>
+<T title='目录'>
 
 - [常用类型](#常用类型)
   - [string, number, boolean](#string-number-boolean)
@@ -211,7 +212,6 @@ function printAll(strs: string | string[] | null) {
 使用动机：参考示例
 
 ```ts
-
 /**
  * 我们知道当 isString 返回 true 时，foo 就是 string 类型
  * 但编译器并不知道这个信息，使用类型谓词可以帮助编译器获取这个信息
@@ -230,13 +230,15 @@ function example(foo: unknown){
 }
 ```
 
+总结来看，它有点像 `as` 断言，也能让开发者自己决断类型，但是需要函数返回值为 `true` 时才成立
+
 ### never 类型
 
 1. 从字面意义看，never 表示一个不可能得到的类型（与空集概念类似）  
    比如 `type N = string & number`，  
    由于 `string` 和 `number` 没有交集，没有值可以赋给该类型，`N` 会被推断为 **never** 类型
 
-2. 使用动机 ①：在分支判断中，保证列举了所有可能选项
+2. 使用动机 ①：在分支判断中，确保已列举了所有可能选项
 
 ```ts
 interface Circle {

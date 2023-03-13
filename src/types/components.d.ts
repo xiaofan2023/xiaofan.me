@@ -12,6 +12,9 @@ declare module '@vue/runtime-core' {
     GameCard: typeof import('./../components/vp/GameCard.vue')['default']
     ICarbonRepeatOne: typeof import('~icons/carbon/repeat-one')['default']
     Modal: typeof import('./../components/modal/Modal.vue')['default']
+    Q: typeof import('./../components/vp/Q.vue')['default']
+    QB: typeof import('../components/vp/Q.vue')['default']
+    Switch: typeof import('./../components/switch/Switch.vue')['default']
     T: typeof import('./../components/vp/T.vue')['default']
   }
 }

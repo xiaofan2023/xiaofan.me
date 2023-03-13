@@ -38,6 +38,10 @@ export default defineConfig({
     socialLinks: [
       { icon: 'github', link: 'https://github.com/xiaofan2023/xiaofan.me' },
     ],
+    editLink: {
+      pattern: 'https://github.com/xiaofan2023/xiaofan.me/edit/main/docs/:path',
+      text: 'Edit this page on GitHub',
+    },
   },
 
   vite,

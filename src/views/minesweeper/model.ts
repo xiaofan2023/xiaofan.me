@@ -119,7 +119,7 @@ export class Model {
     this.initTimer()
   }
 
-  open(pos: Position) {
+  open(pos: Position, allowOpenAdjacent = false) {
     if (this.state === 'ready') {
       this.initMines(pos)
       this.state = 'playing'
@@ -132,7 +132,7 @@ export class Model {
       this.mark(pos)
       return
     }
-    if (grid.open) {
+    if (grid.open && allowOpenAdjacent) {
       this.openAdjacent(grid)
       return
     }

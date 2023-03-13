@@ -25,7 +25,7 @@ defineProps<{
     <template v-else-if="meta.open">
       <div
         v-if="meta.boom"
-        class="bg-red-500/60"
+        class="h-full w-full bg-red-500/60"
       >
         {{ GridLabelPresets.boom }}
       </div>
@@ -34,7 +34,7 @@ defineProps<{
       </div>
       <div
         v-else
-        :class="[GridStylePresets[meta.adjacentMines!], 'font-bold', 'font-mono']"
+        :class="[GridStylePresets[meta.adjacentMines!], 'font-bold']"
       >
         {{ meta.adjacentMines }}
       </div>
