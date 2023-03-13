@@ -15,7 +15,7 @@ const notes: Sidebar = {
           link: '/notes/ts/built-in',
         },
         {
-          text: 'TS 类型挑战🍚',
+          text: 'TS 类型挑战 🍚',
           link: '/notes/ts/type-challenges',
         },
         {

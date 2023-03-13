@@ -11,6 +11,7 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     GameCard: typeof import('./../components/vp/GameCard.vue')['default']
     ICarbonRepeatOne: typeof import('~icons/carbon/repeat-one')['default']
+    ICarbonSearch: typeof import('~icons/carbon/search')['default']
     Modal: typeof import('./../components/modal/Modal.vue')['default']
     Q: typeof import('./../components/vp/Q.vue')['default']
     Switch: typeof import('./../components/switch/Switch.vue')['default']
