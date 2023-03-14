@@ -113,3 +113,5 @@ export default function use2048(options: Use2048Options = {}) {
     nextPreset: next,
   }
 }
+
+export type Use2048Return = ReturnType<typeof use2048>

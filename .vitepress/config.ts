@@ -10,10 +10,11 @@ export default defineConfig({
   lastUpdated: true,
 
   markdown: {
-    theme: {
-      light: 'github-light',
-      dark: 'vitesse-dark',
-    },
+    theme: 'vitesse-dark'
+    // theme: {
+    //   light: 'github-light',
+    //   dark: 'vitesse-dark',
+    // },
   },
 
   themeConfig: {
