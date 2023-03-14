@@ -20,7 +20,7 @@ specifiers:
   unplugin-icons: ^0.15.3
   unplugin-vue-components: ^0.24.1
   vite: ^4.1.4
-  vitepress: 1.0.0-alpha.54
+  vitepress: 1.0.0-alpha.56
   vue: ^3.2.47
 
 dependencies:
@@ -43,7 +43,7 @@ dependencies:
   unplugin-icons: 0.15.3
   unplugin-vue-components: 0.24.1_vue@3.2.47
   vite: 4.1.4_@types+node@18.15.0
-  vitepress: registry.npmmirror.com/vitepress/1.0.0-alpha.54_@types+node@18.15.0
+  vitepress: registry.npmmirror.com/vitepress/1.0.0-alpha.56_@types+node@18.15.0
   vue: 3.2.47
 
 packages:
@@ -2502,11 +2502,11 @@ packages:
       fsevents: registry.npmmirror.com/fsevents/2.3.2
     dev: false
 
-  registry.npmmirror.com/vitepress/1.0.0-alpha.54_@types+node@18.15.0:
-    resolution: {integrity: sha512-VvnXyRIffMUmoKHbxlXZiajsB8TVk8z4uLq3lowDbere/u1FMFMQPR3xzz7nwWjUEJnm2mw5D43e9Pni16qUUw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vitepress/-/vitepress-1.0.0-alpha.54.tgz}
-    id: registry.npmmirror.com/vitepress/1.0.0-alpha.54
+  registry.npmmirror.com/vitepress/1.0.0-alpha.56_@types+node@18.15.0:
+    resolution: {integrity: sha512-FNoanHwmgWn4xZZcc8D34VKWcEs0F7e39xiVUahI7VzzI4VeiB+R/euYtPIUcTxIC2pRDhclw7/DO0JFYSGIpw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vitepress/-/vitepress-1.0.0-alpha.56.tgz}
+    id: registry.npmmirror.com/vitepress/1.0.0-alpha.56
     name: vitepress
-    version: 1.0.0-alpha.54
+    version: 1.0.0-alpha.56
     hasBin: true
     dependencies:
       '@docsearch/css': registry.npmmirror.com/@docsearch/css/3.3.3

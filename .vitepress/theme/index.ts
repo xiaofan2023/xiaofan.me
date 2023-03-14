@@ -1,8 +1,8 @@
 import nprogress from 'nprogress'
 import { inBrowser, type Router } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
-import { globals } from '../../src/components/index'
-import '../../styles/vitepress.css'
+import { globals } from '~/components/index'
+import '~/styles/vitepress.css'
 
 const defineTheme = (T: typeof DefaultTheme) => T
 

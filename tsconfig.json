@@ -13,5 +13,5 @@
     "target": "esnext",
     "types": ["unplugin-icons/types/vue"]
   },
-  "include": ["src/**/*", "vite.config.ts"]
+  "include": ["src/**/*", "vite.config.ts", ".vitepress/theme/*"]
 }

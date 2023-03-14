@@ -31,8 +31,7 @@ const searchEngine = useStorage('searchEngine', index)
 index.value = searchEngine.value
 
 const icon = computed(() => {
-  const path = './icons/' + state.value.id + '.vue'
-  return defineAsyncComponent(() => import(path))
+  return '/icons/' + state.value.id + '.svg'
 })
 
 const keyword = ref('')
@@ -51,7 +50,7 @@ function onRequestSearch() {
       class="flex h-full w-10 items-center p-2.5 transition hover:bg-gray-400/30"
       @click="next()"
     >
-      <Component :is="icon" />
+      <img :src="icon" />
     </div>
 
     <div class="flex-1 px-3">
