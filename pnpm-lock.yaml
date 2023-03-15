@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@iconify-json/carbon': ^1.1.16
+  '@types/fs-extra': ^11.0.1
   '@types/node': ^18.15.0
   '@volar/vue-typescript': ^1.2.0
   '@vueuse/core': ^9.13.0
@@ -20,11 +21,12 @@ specifiers:
   unplugin-icons: ^0.15.3
   unplugin-vue-components: ^0.24.1
   vite: ^4.1.4
-  vitepress: 1.0.0-alpha.56
+  vitepress: 1.0.0-alpha.58
   vue: ^3.2.47
 
 dependencies:
   '@iconify-json/carbon': 1.1.16
+  '@types/fs-extra': registry.npmmirror.com/@types/fs-extra/11.0.1
   '@types/node': registry.npmmirror.com/@types/node/18.15.0
   '@volar/vue-typescript': 1.2.0
   '@vueuse/core': 9.13.0_vue@3.2.47
@@ -43,7 +45,7 @@ dependencies:
   unplugin-icons: 0.15.3
   unplugin-vue-components: 0.24.1_vue@3.2.47
   vite: 4.1.4_@types+node@18.15.0
-  vitepress: registry.npmmirror.com/vitepress/1.0.0-alpha.56_@types+node@18.15.0
+  vitepress: registry.npmmirror.com/vitepress/1.0.0-alpha.58_@types+node@18.15.0
   vue: 3.2.47
 
 packages:
@@ -1746,6 +1748,23 @@ packages:
       fastq: registry.npmmirror.com/fastq/1.15.0
     dev: false
 
+  registry.npmmirror.com/@types/fs-extra/11.0.1:
+    resolution: {integrity: sha512-MxObHvNl4A69ofaTRU8DFqvgzzv8s9yRtaPPm5gud9HDNvpB3GPQFvNuTWAI59B9huVGV5jXYJwbCsmBsOGYWA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/fs-extra/-/fs-extra-11.0.1.tgz}
+    name: '@types/fs-extra'
+    version: 11.0.1
+    dependencies:
+      '@types/jsonfile': registry.npmmirror.com/@types/jsonfile/6.1.1
+      '@types/node': registry.npmmirror.com/@types/node/18.15.0
+    dev: false
+
+  registry.npmmirror.com/@types/jsonfile/6.1.1:
+    resolution: {integrity: sha512-GSgiRCVeapDN+3pqA35IkQwasaCh/0YFH5dEF6S88iDvEn901DjOeH3/QPY+XYP1DFzDZPvIvfeEgk+7br5png==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/jsonfile/-/jsonfile-6.1.1.tgz}
+    name: '@types/jsonfile'
+    version: 6.1.1
+    dependencies:
+      '@types/node': registry.npmmirror.com/@types/node/18.15.0
+    dev: false
+
   registry.npmmirror.com/@types/node/18.15.0:
     resolution: {integrity: sha512-z6nr0TTEOBGkzLGmbypWOGnpSpSIBorEhC4L+4HeQ2iezKCi4f77kyslRwvHeNitymGQ+oFyIWGP96l/DPSV9w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/node/-/node-18.15.0.tgz}
     name: '@types/node'
@@ -2502,11 +2521,11 @@ packages:
       fsevents: registry.npmmirror.com/fsevents/2.3.2
     dev: false
 
-  registry.npmmirror.com/vitepress/1.0.0-alpha.56_@types+node@18.15.0:
-    resolution: {integrity: sha512-FNoanHwmgWn4xZZcc8D34VKWcEs0F7e39xiVUahI7VzzI4VeiB+R/euYtPIUcTxIC2pRDhclw7/DO0JFYSGIpw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vitepress/-/vitepress-1.0.0-alpha.56.tgz}
-    id: registry.npmmirror.com/vitepress/1.0.0-alpha.56
+  registry.npmmirror.com/vitepress/1.0.0-alpha.58_@types+node@18.15.0:
+    resolution: {integrity: sha512-aENSAiE2uKMoQPwBTELY8Nig5qSWrmAl+MgsO3l/TE8At6kXii+2rseEId/bVfT700JeucYdqtCgWxu+LwpYIw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vitepress/-/vitepress-1.0.0-alpha.58.tgz}
+    id: registry.npmmirror.com/vitepress/1.0.0-alpha.58
     name: vitepress
-    version: 1.0.0-alpha.56
+    version: 1.0.0-alpha.58
     hasBin: true
     dependencies:
       '@docsearch/css': registry.npmmirror.com/@docsearch/css/3.3.3

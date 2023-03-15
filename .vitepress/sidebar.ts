@@ -22,6 +22,10 @@ const notes: Sidebar = {
           text: 'Git 撤销操作',
           link: '/notes/git/withdraw',
         },
+        {
+          text: 'Git 分支操作',
+          link: '/notes/git/branch',
+        },
       ],
     },
   ],

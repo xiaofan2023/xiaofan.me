@@ -623,3 +623,8 @@ type A = InorderTraversal<typeof tree1> // [1, 3, 2]
 ```
 
 </T>
+
+
+## 参考
+
+以上题目均来源于 [type-challenges](https://github.com/type-challenges/type-challenges) ❤️ 

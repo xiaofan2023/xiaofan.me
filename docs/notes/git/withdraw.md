@@ -8,17 +8,17 @@ outline: [2, 3]
 
 :::info 关于
 
-本篇主要介绍 Git 撤销操作中涉及的常用命令
+本篇主要介绍 Git 撤销操作中的常用命令
 
-- **git reset** 🤔 **git checkout**
-- **git clean** 🤔 **git rm**
+- **git reset** ✌️ **git checkout**
+- **git clean** ✌️ **git rm**
 
 同时也列举了一些应用情境
 :::
 
 ## reset 与 revert
 
-### ✍️ 使用 git reset
+### 使用 git reset
 
 用于将 HEAD 重置到指定的某次提交  
 有以下三种模式可供选择
@@ -88,7 +88,7 @@ $ git status -s
 最好使用前先 `git add .` 一下，确保改动都被 git 追踪到  
 这样后面即使发现误删，还有补救的机会
 
-### ✍️ 使用 git revert
+### 使用 git revert
 
 一种向前的撤销操作，它不会影响已有的提交历史记录  
 而是在反转指定的更改后，创建一个新的提交记录  
@@ -128,7 +128,7 @@ git revert -n master~5..master~2
 
 ## clean 与 rm
 
-### ✍️ 使用 git clean
+### 使用 git clean
 
 用于删除工作目录下**未被 git 追踪**的文件
 
@@ -137,7 +137,7 @@ git revert -n master~5..master~2
 - `git clean -df` ： `-d`表示目录 删除未被追踪的空目录
 - `git clean -dfx` ：删除所有没有被跟踪的文件和目录 包括那些被忽略的文件
 
-### ✍️ 使用 git rm
+### 使用 git rm
 
 用于删除**已被 git 追踪**的文件
 
@@ -146,10 +146,12 @@ git revert -n master~5..master~2
 - `git rm --cached <file>` ：将文件从暂存区中删除，但保留在工作区中
 - `git rm -r <dir>` ：递归地将目录及其子目录下的所有文件从工作区和暂存区中删除
 
-🤔 都是删除文件，为啥不从资源管理器直接删
+:::info 🤔 删除文件，为啥不从资源管理器直接删
 
-- git rm 删除后会自动将改动提交到暂存区  
-- 不过现在的图形化工具，git add 这步都会默认包含在 commit 中
+git rm 删除后会自动将改动提交到暂存区  
+不过现在的图形化工具，git add 这步都会默认包含在 commit 中
+  
+:::
 
 ## 应用情境
 
@@ -168,16 +170,13 @@ git revert -n master~5..master~2
 可参考的命令行
 
 - `git revert <commit>`
-
   - 创建一个新的提交，用于撤销指定提交的修改
   - 这样可以保留原来的提交历史
 
 - `git reset --soft <commit>`
-
   - 将当前分支重置到指定提交，并将修改放到暂存区
 
 - `git reset --mixed <commit>`
-
   - 将当前分支重置到指定提交，并将修改放到工作目录
 
 - `git reset --hard <commit>`
@@ -189,11 +188,9 @@ git revert -n master~5..master~2
 可参考的命令行
 
 - `git revert <commit>`
-
   - 创建一个新的提交，用于撤销指定的提交，并将其推送到远程分支
 
 - `git reset --hard <commit>`
-
   - 将本地分支重置到指定的提交
   - 然后使用 `–force` 选项将其推送到远程分支
   - 注意这会丢失本地和远程的修改
@@ -212,8 +209,8 @@ git revert -n master~5..master~2
 ### 🤔 我该怎么办
 
 假设我接到了一个任务，在修改了位于 src 目录下的某几个文件后，准备下班  
-但是因为还没有完全搞定，我就先添加到暂存区，准备等明天全部搞完了再提交  
-结果第二次来的时候我不小心（故意搞事）执行了 `git rm -rf src/*`   
+但是因为还没有完全搞定，我就先添加到暂存区，打算等明天全部搞完了再提交  
+结果第二天来的时候我不小心（故意搞事）执行了 `git rm -rf src/*`   
 那么我昨天的暂存记录还能找回来吗 😢
 
 ## 后记
